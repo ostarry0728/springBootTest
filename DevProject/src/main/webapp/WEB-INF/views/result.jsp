@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello Spring Boot Web Start</h1>
+	<h1>Result Web Start</h1>    
 	<div>userId: ${member.userId}</div>
 	<div>password: ${member.password}</div>
 </body>

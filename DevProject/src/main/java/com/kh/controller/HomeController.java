@@ -33,10 +33,20 @@ public class HomeController {
 
 		return "home";
 	}
-	
-	
-	@GetMapping(value="/ajaxhome")
-	public String ajaxHome() {
-		return "ajaxhome";
+
+	@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
+	public String memberInsert() {
+		return "memberInsert";
+	}
+
+	@RequestMapping(value = "/ajaxhome6", method = RequestMethod.GET)
+	public String ajaxhome6() {
+		return "ajaxhome6";
+	}
+
+	@RequestMapping(value = "/registerFileUpForm", method = RequestMethod.GET)
+	public String registerFileUpForm() {
+		log.info("registerFileUpForm");
+		return "registerFileUpForm";
 	}
 }

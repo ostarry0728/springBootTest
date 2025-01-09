@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SUCCESS</title>
 </head>
 <body>
-	<h1>Hello Spring Boot Web Start</h1>
-	<div>userId: ${member.userId}</div>
-	<div>password: ${member.password}</div>
+	<h1>요청 처리 성공</h1>
 </body>
 </html>
