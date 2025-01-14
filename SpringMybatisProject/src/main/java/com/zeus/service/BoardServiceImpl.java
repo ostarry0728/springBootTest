@@ -39,4 +39,9 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.list();
 	}
 
+	@Override
+	public List<Board> search(String title) throws Exception {
+		return mapper.search(title);
+	}
+
 }

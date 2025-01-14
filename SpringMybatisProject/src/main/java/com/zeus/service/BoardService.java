@@ -2,6 +2,8 @@ package com.zeus.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zeus.domain.Board;
 
 public interface BoardService {
@@ -15,4 +17,5 @@ public interface BoardService {
 
 	public List<Board> list() throws Exception;
 
+	public List<Board> search(String title) throws Exception;
 }

@@ -22,6 +22,17 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String search(String title, Model model) throws Exception {
+		log.info("search");
+		Board board = new Board();
+		board.setTitle(title);
+
+		model.addAttribute("board", board);
+		model.addAttribute("list", service.search(title));
+		return "board/list";
+	}
+
 	// 게시판입력폼요청(/WEB-INF/views/board/register.jsp)
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerForm(Board board, Model model) throws Exception {
@@ -40,6 +51,7 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) throws Exception {
 		log.info("list");
+		model.addAttribute(new Board());
 		model.addAttribute("list", service.list());
 	}
 

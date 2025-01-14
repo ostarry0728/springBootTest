@@ -10,7 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		var formObj = $("#member");
+		let formObj = $("#member");
 		$("#btnRegister").on("click", function() {
 			formObj.attr("action", "/user/register");
 			formObj.attr("method", "post");
@@ -41,7 +41,7 @@
 		</table>
 	</form:form>
 	<div>
-		<button type="button" id="btnRegister">등록</button>
+		<button type="submit" id="btnRegister">등록</button>
 	</div>
 </body>
 </html>
