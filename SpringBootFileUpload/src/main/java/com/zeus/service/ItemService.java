@@ -16,4 +16,6 @@ public interface ItemService {
 	public List<Item> list() throws Exception;
 
 	public String getPicture(Integer itemId) throws Exception;
+
+	List<Item> search(String title) throws Exception;
 }

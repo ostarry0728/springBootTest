@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,6 +70,13 @@ public class ItemController {
 		return "item/success";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(@RequestParam("title") String title, Model model) throws Exception {
+		List<Item> searchResults = itemService.search(title);
+		model.addAttribute("itemList", searchResults);
+		return "item/list"; // 검색 결과를 표시할 뷰 (기존 리스트 뷰 사용)
+	}
+
 	// 이미지 게시판 파일수정 요청 /WEB-INF/views/item/modify.jsp
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyForm(Integer itemId, Model model) throws Exception {
@@ -111,13 +119,14 @@ public class ItemController {
 
 	// 멤버함수 -> 파일명을 전달하면 중복이 일어나지 않는 이름_이미지파일.확장자 를 만듬 -> c드라이브의 upload에 저장
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
-		// 절대 중복이 일어나지 않는 아이디를 생성한다. (UUID) 
+		// 절대 중복이 일어나지 않는 아이디를 생성한다. (UUID)
 		// ex) 2700b024-86e2-4c0f-b81e-4e208b12b5aa_b_whopper.png <- createFileName
 		UUID uid = UUID.randomUUID();
 		String createdFileName = uid.toString() + "_" + originalName;
-		//c:/upload/2700b024-86e2-4c0f-b81e-4e208b12b5aa_b_whopper.png <- File target
+		// c:/upload/2700b024-86e2-4c0f-b81e-4e208b12b5aa_b_whopper.png <- File target
 		File target = new File(uploadPath, createdFileName);
-		// 진짜 데이터를 c:/upload/2700b024-86e2-4c0f-b81e-4e208b12b5aa_b_whopper.png를 복사처리. (byte[])
+		// 진짜 데이터를 c:/upload/2700b024-86e2-4c0f-b81e-4e208b12b5aa_b_whopper.png를 복사처리.
+		// (byte[])
 		FileCopyUtils.copy(fileData, target);
 		return createdFileName;
 	}

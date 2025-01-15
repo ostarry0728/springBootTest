@@ -9,6 +9,10 @@
 </head>
 <body>
 	<h2>상품 목록</h2>
+	<form action="/item/search" method="get">
+		<input type="text" name="title" placeholder="검색어를 입력하세요">
+		<button type="submit">검색</button>
+	</form>
 	<a href="/item/register">상품 등록</a>
 	<table border="1">
 		<tr>

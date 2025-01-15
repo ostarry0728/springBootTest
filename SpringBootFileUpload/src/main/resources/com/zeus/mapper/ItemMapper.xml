@@ -8,25 +8,36 @@
 	]]>
 	</select>
 	<insert id="create">
-		INSERT INTO item (item_id, item_name, price, description, picture_url)
+		INSERT INTO item (item_id, item_name, price,
+		description, picture_url)
 		VALUES(item_seq.NEXTVAL,#{itemName},#{price},#{description},#{pictureUrl})
 	</insert>
-	
+
 	<select id="read" resultType="Item">
-		SELECT item_id,item_name,price,description,picture_url FROM item
-		WHERE item_id = #{itemId}
+		SELECT
+		item_id,item_name,price,description,picture_url FROM item
+		WHERE item_id
+		= #{itemId}
 	</select>
-	
+
 	<update id="update">
-		UPDATE item	
-		SET item_name = #{itemName},price = #{price}, description = #{description},	picture_url = #{pictureUrl}
+		UPDATE item
+		SET item_name = #{itemName},price =
+		#{price}, description =
+		#{description}, picture_url = #{pictureUrl}
 		WHERE item_id = #{itemId}
 	</update>
-	
+
 	<delete id="delete">
 		DELETE FROM item WHERE item_id = #{itemId}
 	</delete>
 	<select id="getPicture" resultType="String">
-		SELECT picture_url FROM item WHERE item_id = #{itemId}
+		SELECT picture_url FROM item
+		WHERE item_id = #{itemId}
+	</select>
+	<select id="search" resultType="com.zeus.domain.Item">
+		SELECT *
+		FROM item
+		WHERE item_name LIKE '%' || #{title} || '%'
 	</select>
 </mapper>

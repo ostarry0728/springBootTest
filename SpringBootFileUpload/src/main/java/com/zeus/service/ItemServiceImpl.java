@@ -44,4 +44,9 @@ public class ItemServiceImpl implements ItemService {
 		return mapper.getPicture(itemId);
 	}
 
+	@Override
+	public List<Item> search(String title) throws Exception {
+		return mapper.search(title);
+	}
+
 }

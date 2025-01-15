@@ -16,4 +16,5 @@ public class Item implements Serializable {
 	// 파일 업로드를 처리하는 클래스
 	private MultipartFile picture;
 	private String pictureUrl;
+	
 }
