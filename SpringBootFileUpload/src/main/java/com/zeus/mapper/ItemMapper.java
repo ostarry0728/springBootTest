@@ -17,5 +17,4 @@ public interface ItemMapper {
 
 	public String getPicture(Integer itemId) throws Exception;
 
-	List<Item> search(String title) throws Exception;
 }

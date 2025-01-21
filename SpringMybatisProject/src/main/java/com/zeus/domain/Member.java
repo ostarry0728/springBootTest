@@ -3,6 +3,7 @@ package com.zeus.domain;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
 
 @Data
@@ -15,4 +16,5 @@ public class Member {
 	private Date updDate;
 
 	private List<MemberAuth> authList;
+
 }

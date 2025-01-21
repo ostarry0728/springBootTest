@@ -15,10 +15,10 @@ public class NoticeController {
 		log.info("list : 모두가 접근 가능");
 	}
 
-	// 회원권한을 가진 사용자만 접근이 가능하다.
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')") 
 	@RequestMapping("/register")
 	public void registerForm() {
 		log.info("registerForm : 로그인한 관리자만 접근 가능");
 	}
+
 }

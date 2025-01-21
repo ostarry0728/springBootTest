@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class LoginController {
-// 에러 메시지와 로그아웃 메시지를 파라미터로 사용한다.
+	// 에러 메시지와 로그아웃 메시지를 파라미터로 사용한다.
 	@RequestMapping("/login")
 	public String loginForm(String error, String logout, Model model) {
 		log.info("error: " + error);
@@ -23,9 +23,4 @@ public class LoginController {
 		return "loginForm";
 	}
 
-	@RequestMapping("/logout")
-	public String logoutForm() {
-		log.info("logoutForm");
-		return "logoutForm";
-	}
 }

@@ -34,29 +34,23 @@
 	</insert>
 
 	<!-- 부모 객체와 관계 객체를 작성하는 데 필요한 모든 레코드를 검색하도록 외부 조인을 사용한 SQL 을 정의한다. -->
-	<!-- 가장 핵심부분 꼭 참조 -->
+	<!-- 가장 핵심부분 꼭 참조할것  -->
 	<select id="read" resultMap="memberMap">
-		SELECT mem.user_no, mem.user_id,
-		user_pw, user_name, reg_date, upd_date, auth
-		FROM mybatismember mem
-		LEFT OUTER JOIN mybatismember_auth auth
+		SELECT mem.user_no, mem.user_id, user_pw, user_name, reg_date, upd_date, auth
+		FROM mybatismember mem LEFT OUTER JOIN mybatismember_auth auth
 		ON mem.user_no = auth.user_no
-		WHERE
-		mem.user_no = #{userNo}
+		WHERE mem.user_no = #{userNo}
 	</select>
 
-	<select id="list" resultType="Member">
-		SELECT user_no, user_id, user_pw,
-		user_name, reg_date
-		FROM mybatismember
-		ORDER BY reg_date DESC
+	<select id="list" resultType="Member"> 
+		SELECT user_no,	user_id, user_pw, user_name, reg_date
+		FROM mybatismember ORDER BY reg_date DESC
 	</select>
 
 	<update id="update">
 		UPDATE mybatismember
-		SET user_name = #{userName}
-		WHERE
-		user_no = #{userNo}
+		SET user_name =#{userName} 
+		WHERE user_no = #{userNo}
 	</update>
 
 	<delete id="delete">
@@ -64,8 +58,7 @@
 	</delete>
 
 	<delete id="deleteAuth">
-		DELETE FROM mybatismember_auth WHERE user_no =
-		#{userNo}
+		DELETE FROM mybatismember_auth WHERE user_no = #{userNo}
 	</delete>
 
 </mapper>

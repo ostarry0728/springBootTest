@@ -13,8 +13,8 @@ public class Item implements Serializable {
 	private String itemName;
 	private Integer price;
 	private String description;
-	// 파일 업로드를 처리하는 클래스
+	//파일업로드처리하는 클래스
 	private MultipartFile picture;
 	private String pictureUrl;
-	
+
 }

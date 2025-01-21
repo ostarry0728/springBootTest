@@ -40,16 +40,22 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(Board board, Model model) throws Exception {
+	public void read(int boardNo, Model model) throws Exception {
 		log.info("read");
+		log.info("read boardNo = " + boardNo);
+		Board board = new Board();
+		board.setBoardNo(boardNo);
 		model.addAttribute(service.read(board.getBoardNo()));
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public String remove(Board board, Model model) throws Exception {
+	public String remove(int boardNo, Model model) throws Exception {
 		log.info("remove");
+		Board board = new Board();
+		board.setBoardNo(boardNo);
 		service.remove(board.getBoardNo());
-		model.addAttribute("msg", "삭제에 성공하였습니다.");
+		model.addAttribute("msg", "삭제를 성공하였습니다.");
+		
 		return "board/success";
 	}
 
@@ -57,7 +63,7 @@ public class BoardController {
 	public String modify(Board board, Model model) throws Exception {
 		log.info("modify");
 		service.modify(board);
-		model.addAttribute("msg", "수정이 완료되었습니다.");
+			model.addAttribute("msg", "수정이 완료되었습니다.");
 		return "board/success";
 	}
 

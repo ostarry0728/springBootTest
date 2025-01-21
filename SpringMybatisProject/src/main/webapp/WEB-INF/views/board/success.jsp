@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<h2>${msg}</h2>
-		<br> <a href="list">List</a>
+		<br> <a href="/board/list">List</a>
 	</div>
 </body>
 </html>

@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board")
 @Controller
 public class BoardController {
-
 	@RequestMapping("/list")
 	public void list() {
 		log.info("list : 모두가 접근 가능");

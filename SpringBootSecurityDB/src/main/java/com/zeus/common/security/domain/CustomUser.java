@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-
 import com.zeus.domain.Member;
 
 public class CustomUser extends User {
-
 	private static final long serialVersionUID = 1L;
 	private Member member;
 
@@ -18,7 +16,6 @@ public class CustomUser extends User {
 		super(username, password, authorities);
 	}
 
-	// 생성자
 	public CustomUser(Member member) {
 		// 사용자가 정의한 Member 타입을 스프링 시큐리티 UsersDetails 타입으로 변환한다.
 		super(member.getUserId(), member.getUserPw(), member.getAuthList().stream()

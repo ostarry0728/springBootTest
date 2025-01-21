@@ -12,6 +12,5 @@
 	<form action="/logout" method="post">
 		<sec:csrfInput />
 		<button>로그아웃</button>
-	</form>
 </body>
 </html>

@@ -51,7 +51,7 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) throws Exception {
 		log.info("list");
-		model.addAttribute(new Board());
+		model.addAttribute(new Board()); 
 		model.addAttribute("list", service.list());
 	}
 

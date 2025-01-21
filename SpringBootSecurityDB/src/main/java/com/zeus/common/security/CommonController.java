@@ -10,9 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class CommonController {
+
 	@RequestMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("access Denied: " + auth);
-		model.addAttribute("msg", "인증되지않은 아이디나 패스워드입니다.");
+		model.addAttribute("msg", "인증되지않는 아이디나 패스워드입니다."); 
 	}
 }

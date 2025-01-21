@@ -10,7 +10,6 @@
 <body>
 	<h3>게시글 등록 : 로그인한 회원만 접근 가능</h3>
 	<form action="/logout" method="post">
-		<sec:csrfInput />
 		<p>
 			principal :
 			<sec:authentication property="principal" />
@@ -31,10 +30,11 @@
 			사용자 권한 리스트 :
 			<sec:authentication property="principal.member.authList" />
 		</p>
-		<div>
-			<a href="/">HOME</a>
-		</div>
+
+
+		<sec:csrfInput />
 		<button>로그아웃</button>
 	</form>
+
 </body>
 </html>

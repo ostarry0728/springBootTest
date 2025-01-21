@@ -1,7 +1,6 @@
 package com.zeus.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +21,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void regist(Item item) throws Exception {
 		mapper.create(item);
+
 	}
 
 	@Override
@@ -32,21 +32,17 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void modify(Item item) throws Exception {
 		mapper.update(item);
+
 	}
 
 	@Override
 	public void remove(Integer itemId) throws Exception {
 		mapper.delete(itemId);
+
 	}
 
 	@Override
 	public String getPicture(Integer itemId) throws Exception {
 		return mapper.getPicture(itemId);
 	}
-
-	@Override
-	public List<Item> search(String title) throws Exception {
-		return mapper.search(title);
-	}
-
 }

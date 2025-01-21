@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,10 +8,6 @@
 </head>
 <body>
 	<h2>상품 목록</h2>
-	<form action="/item/search" method="get">
-		<input type="text" name="title" placeholder="검색어를 입력하세요">
-		<button type="submit">검색</button>
-	</form>
 	<a href="/item/register">상품 등록</a>
 	<table border="1">
 		<tr>
@@ -27,10 +22,8 @@
 				<td align="center">${item.itemId}</td>
 				<td align="left">${item.itemName}</td>
 				<td align="right">${item.price}원</td>
-				<td align="center"><a href="/item/modify?itemId=${item.itemId}">상품
-						편집</a></td>
-				<td align="center"><a href="/item/remove?itemId=${item.itemId}">상품
-						제거</a></td>
+				<td align="center"><a href="/item/modify?itemId=${item.itemId}">상품편집</a></td>
+				<td align="center"><a href="/item/remove?itemId=${item.itemId}">상품제거</a></td>
 			</tr>
 		</c:forEach>
 	</table>

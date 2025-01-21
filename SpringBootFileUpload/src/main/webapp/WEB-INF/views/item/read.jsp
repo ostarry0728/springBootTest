@@ -12,25 +12,25 @@
 	$(document).ready(function() {
 		let formObj = $("#member");
 
-		// 수정요처만 진행
-		console.log(formObj);
+		//수정요청만 진행
 		$("#btnModify").on("click", function() {
 			formObj.attr("action", "/user/modify");
 			formObj.attr("method", "get");
 			formObj.submit();
 		});
 
-		// 삭제요청
+		//삭제요청
 		$("#btnRemove").on("click", function() {
 			formObj.attr("action", "/user/remove");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
 
-		// 리스트
+		//리스트
 		$("#btnList").on("click", function() {
 			self.location = "/user/list";
 		});
+
 	});
 </script>
 </head>
@@ -67,18 +67,19 @@
 			</tr>
 			<tr>
 				<td>auth - 3</td>
-				<td><form:select path="authList[2].auth" disabled="true">
+				<td><form:select path="authList[2].auth" disabled="true" >
 						<form:option value="" label="=== 선택해 주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
 			</tr>
+			
 		</table>
 	</form:form>
 	<div>
-		<button type="button" id="btnModify">수정완료하기</button>
-		<button type="button" id="btnRemove">삭제</button>
+		<button type="button" id="btnModify">수정하러가기</button>
+		<button type="button" id="btnRemove">삭제처리</button>
 		<button type="button" id="btnList">리스트보기</button>
 	</div>
 </body>

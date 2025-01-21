@@ -15,24 +15,35 @@ import lombok.Data;
 
 @Data
 @Entity
-@SequenceGenerator(name = "JPABOARD_SEQ_CEN", sequenceName = "JPABOARD_SEQ", initialValue = 1, allocationSize = 1)
-@Table(name = "jpaboard")
+@SequenceGenerator(
+	name="JPABOARD_SEQ_GEN",
+	sequenceName="JPABOARD_SEQ",
+	initialValue=1,
+	allocationSize=1)
+@Table(name="jpaboard")
 public class Board {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JPABOARD_SEQ_CEN")
-	@Column(name = "board_no")
-	private long boardNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JPABOARD_SEQ_GEN")
+	@Column(name="board_no")
+	private long boardNo; 
 
-	@Column(name = "title")
+	@Column(name="title")
 	private String title;
-
-	@Column(name = "content")
+	
+	@Column(name="content")
 	private String content;
-
-	@Column(name = "writer")
-	private String writer;
-
+	
+	@Column(name="writer")
+	private String writer; 
+	
 	@CreationTimestamp
-	@Column(name = "reg_date")
+	@Column(name="reg_date")
 	private Date regDate;
 }
+
+
+
+
+
+
+

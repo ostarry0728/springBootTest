@@ -16,6 +16,6 @@ public interface BoardMapper {
 	public void delete(Integer boardNo) throws Exception;
 
 	public List<Board> list() throws Exception;
-
+	
 	public List<Board> search(@Param("title") String title) throws Exception;
 }

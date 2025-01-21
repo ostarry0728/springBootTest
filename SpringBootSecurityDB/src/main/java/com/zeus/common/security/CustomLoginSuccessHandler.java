@@ -31,13 +31,14 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		clearAuthenticationAttribute(request);
 		// 사용자가 인증되기 전에 접근을 시도했던 요청을 가져온다
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
-		if (savedRequest != null) {
+		if(savedRequest != null) {
 			String targetUrl = savedRequest.getRedirectUrl();
 			log.info("CustomLoginSuccessHandler Login Success targetUrl = " + targetUrl);
 			response.sendRedirect(targetUrl);
-		} else {
+		}else {
 			response.sendRedirect("/");
 		}
+		
 	}
 
 	// 인증 과정에서 발생한 예외 정보를 세션에서 제거합니다.
@@ -49,4 +50,5 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		// 세션에서 인증 예외 속성을 제거한다.
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 	}
+
 }

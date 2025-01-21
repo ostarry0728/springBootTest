@@ -9,8 +9,7 @@
 </head>
 <body>
 	<h2>사용자 등록 화면-2</h2>
-	<form:form modelAttribute="member" method="post"
-		action="registerValidation2">
+	<form:form modelAttribute="member" method="post" action="/member/registerValidation2">
 		<table>
 			<tr>
 				<td>유저ID</td>
@@ -54,3 +53,4 @@
 	</form:form>
 </body>
 </html>
+

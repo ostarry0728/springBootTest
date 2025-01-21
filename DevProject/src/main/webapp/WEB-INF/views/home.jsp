@@ -14,6 +14,7 @@
 		<br>
 		<spring:message code="welcome.message" arguments="홍길동" />
 	</h1>
+
 	<P>The time on the server is ${serverTime}.</P>
 </body>
 </html>

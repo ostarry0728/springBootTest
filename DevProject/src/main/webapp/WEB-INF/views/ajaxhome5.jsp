@@ -1,35 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ContentType 매핑</title>
+<title>Insert title here</title>
 </head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#getBtn").on("click", function()
-			var userObjectArray = [
-				{userId:"name01", password:"pw01"},
-				{userId:"name02", password:"pw02"}];
-				
-	$.ajax({
-			type : "post",
-			url : "/member/register06",
-			data: JSON.stringify(userObjectArray),
-			contentType : "application/json; charset=utf-8",
-			success : function(result) {
+	$(document).ready(function() {
+
+		$("#getBtn").on("click", function() {
+			var userObjectArray = [ {
+				userId : "name01",
+				password : "pw01"
+			}, {
+				userId : "name02",
+				password : "pw02"
+			} ];
+			
+			$.ajax({
+				type : "post",
+				url : "/member/register06",
+				data : JSON.stringify(userObjectArray),
+				contentType : "application/json; charset=utf-8",
+				success : function(result) {
 					console.log("result: " + result);
 					if (result === "SUCCESS") {
-							alert("SUCCESS");
+						alert("SUCCESS");
 					}
 				}
+			});
 		});
-});
 
+	});
 </script>
 <body>
 	<h1>Ajax Home</h1>

@@ -13,18 +13,20 @@ import com.board.domain.Board;
 
 @Repository
 public class BoardDAO {
-	// jdbc templete
+
+	// jdbc template
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	public static String insert = "insert into jdbcBoard(board_no, title, content, writer) "
+	
+	public static String insert = "insert into jdbcBoard(board_no, title, content, writer)"
 			+ "values(jdbcBoard_seq.NEXTVAL, ?, ?, ?)";
 	public static String list = "SELECT board_no, title, content, writer, reg_date FROM jdbcBoard WHERE board_no > 0 "
 			+ "ORDER BY board_no desc, reg_date DESC";
 	public static String selectOne = "SELECT board_no, title, content, writer, reg_date FROM jdbcBoard WHERE board_no = ? ";
 	public static String delete = "delete from jdbcBoard where board_no = ?";
-	public static String modify = "UPDATE jdbcBoard SET title = ?, content = ? WHERE board_no = ?";
+	public static String modify = "UPDATE jdbcBoard SET title =?, writer =?, content =? WHERE board_no = ?";
 
-	// insert 함수를 처리.
+	// insert 함수를 처리하면된다.
 	public void create(Board board) throws Exception {
 		jdbcTemplate.update(insert, board.getTitle(), board.getContent(), board.getWriter());
 	}
@@ -67,6 +69,6 @@ public class BoardDAO {
 	}
 
 	public int modify(Board board) throws Exception {
-		return jdbcTemplate.update(modify, board.getTitle(), board.getContent(), board.getBoardNo());
+		return jdbcTemplate.update(modify, board.getTitle(), board.getWriter(),  board.getContent(),board.getBoardNo());
 	}
 }

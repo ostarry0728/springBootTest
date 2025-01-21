@@ -2,6 +2,7 @@ package com.zeus.mapper;
 
 import java.util.List;
 
+import com.zeus.domain.Board;
 import com.zeus.domain.Member;
 import com.zeus.domain.MemberAuth;
 

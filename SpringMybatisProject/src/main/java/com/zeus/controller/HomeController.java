@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class HomeController {
+	
 	@Autowired
 	private MessageSource messageSource;
 
@@ -30,14 +31,15 @@ public class HomeController {
 
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome() {
-		// 미리 정의된 메시지에 값을 넘겨준다.
-		String[] args = { "이순신" };
-		String[] args2 = { "MR. lee" };
-		// 스프링 프레임워크로부터 MessageSource를 주입 받은 다음 getMessage 메서드를 호출한다.
+		// 미리 정의된 메시지에 값을 넘겨준다. 
+		String[] args = {"이순신"};
+		String[] args2 = {"MR. lee"};
+		// 스프링 프레임워크로부터 MessageSource를 주입 받은 다음 getMessage 메서드를 호출한다. 
 		String message = messageSource.getMessage("welcome.message", args, Locale.KOREAN);
-		String message2 = messageSource.getMessage("welcome.message", args2, Locale.ENGLISH);
+		String message2 = messageSource.getMessage("welcome.message", args2,Locale.ENGLISH);
 		log.info("Welcome message : " + message);
 		log.info("Welcome message2 : " + message2);
 		return "home"; // 뷰 파일명
 	}
+
 }

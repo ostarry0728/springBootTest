@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("Load User By UserName : " + username);
-		// userName은 사용자명이 아니라 사용자 아이디이다.
+		// userName은 사용자명이 아니라 사용자 아이디이다. 
 		Member member = mapper.read(username);
 		log.info("queried by member mapper: " + member);
 

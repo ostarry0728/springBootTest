@@ -17,7 +17,7 @@
 	</update>
 	<delete id="delete">
 		DELETE FROM aopboard
-		WHERE board_no = #{boardNo}
+		WHERE board_no2 = #{boardNo}
 	</delete>
 	<select id="list" resultType="Board">
 		<![CDATA[

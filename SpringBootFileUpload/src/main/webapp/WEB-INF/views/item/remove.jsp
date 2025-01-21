@@ -1,24 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>파일 업로드</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
+
 		var formObj = $("#item");
+
 		$("#btnRemove").on("click", function() {
 			formObj.attr("action", "/item/remove");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+
 		$("#btnList").on("click", function() {
 			self.location = "/item/list";
 		});
+
 	});
 </script>
 </head>
@@ -37,18 +39,20 @@
 			</tr>
 			<tr>
 				<td>파일</td>
-				<td><img src="display?itemId=${item.itemId}" width="210"
-					height="240"></td>
+				<td><img src="/item/display?itemId=${item.itemId}" width="210" height="240"></td>
 			</tr>
 			<tr>
 				<td>개요</td>
 				<td><form:textarea path="description" disabled="true" /></td>
 			</tr>
 		</table>
+
 	</form:form>
+
 	<div>
 		<button type="submit" id="btnRemove">Remove</button>
 		<button type="submit" id="btnList">List</button>
 	</div>
 </body>
 </html>
+

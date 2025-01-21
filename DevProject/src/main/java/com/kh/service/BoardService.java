@@ -35,5 +35,4 @@ public class BoardService {
 		boardList.remove(board);
 		log.info("delete: {}", board);
 	}
-
 }

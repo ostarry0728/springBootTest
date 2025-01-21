@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <html>
 <head>
 <title>Board</title>
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var formObj = $("#board");
 		console.log(formObj);
-
+		
 		$("#btnModify").on("click", function() {
 			formObj.attr("action", "/board/modify");
 			formObj.attr("method", "post");
@@ -20,7 +18,7 @@
 		$("#btnRemove").on("click", function() {
 			var boardNo = $("#boardNo");
 			var boardNoVal = boardNo.val();
-			self.location = "/board/remove?boardNo=" + boardNoVal;
+			self.location = "/board/remove?boardNo="+boardNoVal;
 		});
 		$("#btnList").on("click", function() {
 			self.location = "/board/list";
@@ -58,3 +56,5 @@
 
 </body>
 </html>
+
+

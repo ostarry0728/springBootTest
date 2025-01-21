@@ -18,6 +18,7 @@
 	<h2>
 		<c:out value="${logout}" />
 	</h2>
+
 	<form method="post" action="/login">
 		<div>
 			<input type="text" name="username" value="">
@@ -32,7 +33,9 @@
 		<div>
 			<input type="submit">
 		</div>
+
 		<sec:csrfInput />
 	</form>
 </body>
 </html>
+

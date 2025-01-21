@@ -27,53 +27,45 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableMethodSecurity(prePostEnabled=true, securedEnabled=true)
 public class SecurityConfig {
-
 	@Autowired
 	DataSource dataSource;
 
 	@Bean
-	SecurityFilterChain filterCahin(HttpSecurity http) throws Exception {
-		log.info("SecurityConfig");
-		// 1. csrf 토큰을 비활성화
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		// csrf 토큰 비활성화
 		http.csrf().disable();
-
-		// 2. 모든사이드에 인증이 되면 모두 인가가 된 상태
-		// /board/list 인증 ok.
-//		http.authorizeRequests().requestMatchers("/board/list").permitAll();
-		// /board/register 인증, 인가(MEMBER)
-//		http.authorizeRequests().requestMatchers("/board/register").hasRole("MEMBER");
-
-//		http.authorizeRequests().requestMatchers("/notice/list").permitAll();
-
-//		http.authorizeRequests().requestMatchers("/notice/register").hasRole("ADMIN");
-
-		// 3. id, password는 기존것을 사용하지 않고 우리가 설계한 아이디와 패스워드, 인가 정책을 세워서 제시.
-		// 4. 아이디나, 패스워드가 잘못되었을때 화면에 인증실패 화면이 출력
-//		http.exceptionHandling().accessDeniedPage("/accessError");
-
-		// 5. 로그인 기본폼 사용을 지정
+		// URI 패턴으로 접근 제한을 설정한다.
+		//http.authorizeRequests().requestMatchers("/board/list").permitAll();
+		//http.authorizeRequests().requestMatchers("/board/register").hasRole("MEMBER");
+		
+		//http.authorizeRequests().requestMatchers("/notice/list").permitAll();
+		//http.authorizeRequests().requestMatchers("/notice/register").hasRole("ADMIN");
 		// 개발자가 정의한 로그인 페이지의 URI를 지정한다.
 		// 로그인 성공 후 처리를 담당하는 처리자로 지정한다.
 		http.formLogin().loginPage("/login").successHandler(createAuthenticationSuccessHandler());
-
 		// 로그아웃 처리를 위한 URI를 지정하고, 로그아웃한 후에 세션을 무효화 한다.
-		http.logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("rememberme", "JSESSION_ID");
+		http.logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("remember-me", "JSESSION_ID");
+		// 등록한 CustomAccessDeniedHandler를 접근 거부 처리자로 지정한다.
 		http.exceptionHandling().accessDeniedHandler(createAccessDeniedHandler());
 
+		// 데이터 소스를 지정하고 테이블을 이용해서 기존 로그인 정보를 기록
+		// 쿠키의 유효 시간을 지정한다(24시간).
 		http.rememberMe().key("zeus").tokenRepository(createJDBCRepository()).tokenValiditySeconds(60 * 60 * 24);
-		return http.build();
-	}
 
-	private PersistentTokenRepository createJDBCRepository() {
-		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+		return http.build();
+
+	}
+	
+	private PersistentTokenRepository createJDBCRepository() { 
+		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl(); 
 		repo.setDataSource(dataSource);
 		return repo;
 	}
 
+
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// 지정된 아이디와 패스워드로 로그인이 가능하도록 설정한다.
 		auth.userDetailsService(createUserDetailsService()).passwordEncoder(createPasswordEncoder());
 	}
 
@@ -89,12 +81,12 @@ public class SecurityConfig {
 		return new CustomNoOpPasswordEncoder();
 	}
 
+	// CustomAccessDeniedHandler를 빈으로 등록한다.
 	@Bean
 	public AccessDeniedHandler createAccessDeniedHandler() {
 		return new CustomAccessDeniedHandler();
 	}
 
-	// CustomLoginSuccessHandler를 빈으로 등록한다.
 	@Bean
 	public AuthenticationSuccessHandler createAuthenticationSuccessHandler() {
 		return new CustomLoginSuccessHandler();

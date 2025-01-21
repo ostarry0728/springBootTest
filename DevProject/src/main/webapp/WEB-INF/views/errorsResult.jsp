@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h3>Errors Result</h3>
+
 	<table>
 		<tr>
 			<td>유저ID</td>

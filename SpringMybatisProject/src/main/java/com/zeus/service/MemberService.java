@@ -16,4 +16,5 @@ public interface MemberService {
 	public void remove(int userNo) throws Exception;
 
 	public List<Member> list() throws Exception;
+
 }

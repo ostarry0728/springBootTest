@@ -1,9 +1,9 @@
 package com.zeus.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zeus.domain.Board;
 import com.zeus.mapper.BoardMapper;
@@ -12,8 +12,9 @@ import com.zeus.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private BoardMapper mapper;
-
+	private BoardMapper mapper; 
+	
+	@Transactional
 	@Override
 	public void register(Board board) throws Exception {
 		mapper.create(board);
@@ -21,14 +22,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board read(Integer boardNo) throws Exception {
-		return mapper.read(boardNo);
+		return mapper.read(boardNo); 
 	}
 
+	@Transactional
 	@Override
 	public void modify(Board board) throws Exception {
 		mapper.update(board);
 	}
 
+	@Transactional
 	@Override
 	public void remove(Integer boardNo) throws Exception {
 		mapper.delete(boardNo);
@@ -41,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> search(String title) throws Exception {
+		
 		return mapper.search(title);
 	}
 

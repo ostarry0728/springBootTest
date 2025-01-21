@@ -1,24 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Mybatis 회원</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var formObj = $("#member");
+
 		$("#btnModify").on("click", function() {
 			formObj.attr("action", "/user/modify");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+
 		$("#btnList").on("click", function() {
 			self.location = "/user/list";
 		});
+
 	});
 </script>
 </head>
@@ -45,8 +46,7 @@
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
-				<td><font color="red"><form:errors
-							path="authList[0].auth" /></font></td>
+				<td><font color="red"><form:errors path="authList[0].auth" /></font></td>
 			</tr>
 			<tr>
 				<td>auth - 2</td>
@@ -56,8 +56,7 @@
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
-				<td><font color="red"><form:errors
-							path="authList[1].auth" /></font></td>
+				<td><font color="red"><form:errors path="authList[1].auth" /></font></td>
 			</tr>
 			<tr>
 				<td>auth - 3</td>
@@ -67,8 +66,7 @@
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select></td>
-				<td><font color="red"><form:errors
-							path="authList[2].auth" /></font></td>
+				<td><font color="red"><form:errors	path="authList[2].auth" /></font></td>
 			</tr>
 		</table>
 	</form:form>

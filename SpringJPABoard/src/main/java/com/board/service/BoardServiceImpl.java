@@ -17,23 +17,24 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardRepository repository;
 
+	
 	@Override
 	@Transactional
 	public void register(Board board) throws Exception {
-		repository.save(board);
+		 repository.save(board); 
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true) 
 	public Board read(Long boardNo) throws Exception {
-		return repository.getOne(boardNo);
+		return  repository.getOne(boardNo);
 	}
 
 	@Override
 	@Transactional
 	public void modify(Board board) throws Exception {
-		// 데이터베이스에서 Board 객체를 가져온다.
-		Board boardEntity = repository.getOne(board.getBoardNo());
+		//데이타베이스에서 Board 객체를 가져온다.
+		Board  boardEntity = repository.getOne(board.getBoardNo());
 		boardEntity.setTitle(board.getTitle());
 		boardEntity.setContent(board.getContent());
 	}
@@ -42,10 +43,12 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	public void remove(Long boardNo) throws Exception {
 		repository.deleteById(boardNo);
+
 	}
 
 	@Override
 	public List<Board> list() throws Exception {
+		// TODO Auto-generated method stub
 		return repository.findAll(Sort.by(Direction.DESC, "boardNo"));
 	}
 

@@ -13,7 +13,10 @@ public class Member {
 	private String userPw;
 	private String userName;
 	private boolean enabled;
+
 	private Date regDate;
 	private Date updDate;
+
 	private List<MemberAuth> authList;
+
 }

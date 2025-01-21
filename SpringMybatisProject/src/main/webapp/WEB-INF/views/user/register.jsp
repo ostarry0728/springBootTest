@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Mybatis USER 등록</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		let formObj = $("#member");
+		var formObj = $("#member");
 		$("#btnRegister").on("click", function() {
 			formObj.attr("action", "/user/register");
 			formObj.attr("method", "post");
@@ -40,8 +38,10 @@
 			</tr>
 		</table>
 	</form:form>
+
 	<div>
 		<button type="submit" id="btnRegister">등록</button>
 	</div>
 </body>
 </html>
+

@@ -9,8 +9,8 @@ import com.board.dao.BoardDAO;
 import com.board.domain.Board;
 
 @Service
-public class BoardServiceImpl implements BoardService {
-
+public class BoardServiceImpl implements BoardService{
+	
 	@Autowired
 	private BoardDAO dao;
 
@@ -21,7 +21,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> list() throws Exception {
-
 		return dao.list();
 	}
 
@@ -37,6 +36,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int modify(Board board) throws Exception {
-		return dao.modify(board);
+		return dao.modify(board); 
 	}
 }
