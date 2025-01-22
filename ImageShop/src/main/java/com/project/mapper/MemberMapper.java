@@ -29,4 +29,10 @@ public interface MemberMapper {
 
 	// 삭제 처리
 	public void delete(int userNo) throws Exception;
+
+	// 회원 테이블의 데이터 건수 조회
+	public int countAll() throws Exception;
+
+	// 사용자 아이디로 회원 정보 조회
+	public Member readByUserId(String userId);
 }

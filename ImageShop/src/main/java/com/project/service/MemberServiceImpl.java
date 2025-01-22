@@ -72,4 +72,21 @@ public class MemberServiceImpl implements MemberService {
 		mapper.delete(userNo);
 	}
 
+	// 회원 테이블의 데이터 건수를 반환한다.
+	@Override
+	public int countAll() throws Exception {
+		return mapper.countAll();
+	}
+
+	// 최초 관리자를 생성한다.
+	@Transactional
+	@Override	
+	public void setupAdmin(Member member) throws Exception {
+		mapper.create(member);
+		MemberAuth memberAuth = new MemberAuth();
+		memberAuth.setUserNo(member.getUserNo());
+		memberAuth.setAuth("ROLE_ADMIN");
+		mapper.createAuth(memberAuth);
+	}
+
 }

@@ -1,12 +1,15 @@
 package com.project.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.project.common.domain.CodeLabelValue;
 import com.project.domain.CodeDetail;
 import com.project.service.CodeDetailService;
@@ -14,6 +17,7 @@ import com.project.service.CodeService;
 
 @Controller
 @RequestMapping("/codedetail")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class CodeDetailController {
 	@Autowired
 	private CodeDetailService codeDetailService;
