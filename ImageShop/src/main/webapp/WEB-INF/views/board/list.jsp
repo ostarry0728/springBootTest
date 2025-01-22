@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +14,7 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/user.css">
+<link rel="stylesheet" href="/css/board.css">
 <title>Image Shop</title>
 </head>
 <body>
@@ -19,48 +22,46 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<main align="center">
 		<h2>
-			<spring:message code="user.header.list" />
+			<spring:message code="board.header.list" />
 		</h2>
-		<a href="register"><spring:message code="action.new" /></a>
-		<table border="1" class="user_table">
+		<sec:authorize access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')">
+			<a href="/board/register"><spring:message code="action.new" /></a>
+		</sec:authorize>
+		<table border="1" class="board_table">
 			<tr>
-				<th align="center" width="60"><spring:message code="user.no" /></th>
-				<th align="center" width="80"><spring:message
-						code="user.userId" /></th>
-				<th align="center" width="300"><spring:message
-						code="user.userPw" /></th>
+				<th align="center" width="80"><spring:message code="board.no" /></th>
+				<th align="center" width="320"><spring:message
+						code="board.title" /></th>
 				<th align="center" width="100"><spring:message
-						code="user.userName" /></th>
-				<th align="center" width="100"><spring:message code="user.job" /></th>
+						code="board.writer" /></th>
 				<th align="center" width="180"><spring:message
-						code="user.regdate" /></th>
+						code="board.regdate" /></th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty list}">
 					<tr>
-						<td colspan="6"><spring:message code="common.listEmpty" /></td>
+						<td colspan="4"><spring:message code="common.listEmpty" /></td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${list}" var="member">
+					<c:forEach items="${list}" var="board">
 						<tr>
-							<td align="center">${member.userNo}</td>
-							<td align="center"><a
-								href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
-							<td align="left">${member.userPw}</td>
-							<td align="right">${member.userName}</td>
-							<td align="right">${member.job}</td>
+							<td align="center">${board.boardNo}</td>
+							<td align="left"><a
+								href='/board/read?boardNo=${board.boardNo}'>${board.title}</a></td>
+							<td align="right">${board.writer}</td>
 							<td align="center"><fmt:formatDate
-									pattern="yyyy-MM-dd HH:mm" value="${member.regDate}" /></td>
+									pattern="yyyy-MM-dd HH:mm" value="${board.regDate}" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</table>
+
 	</main>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script>
-		let result = "${msg}";
+		var result = "${msg}";
 		if (result === "SUCCESS") {
 			alert("<spring:message code='common.processSuccess' />");
 		}
