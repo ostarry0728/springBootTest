@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/board.css">
+<link rel="stylesheet" href="/css/notice.css">
 <title>Image Shop</title>
 </head>
 <body>
@@ -19,71 +19,54 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<main align="center">
 		<h2>
-			<spring:message code="board.header.read" />
+			<spring:message code="notice.header.read" />
 		</h2>
-		<form:form modelAttribute="board">
-			<form:hidden path="boardNo" />
-			<!-- 현재 페이지 번호와 페이징 크기를 숨겨진 필드 요소를 사용하여 전달한다. -->
-			<input type="hidden" id="page" name="page" value="${pgrq.page}">
-			<input type="hidden" id="sizePerPage" name="sizePerPage" value="${pgrq.sizePerPage}">
-			<table class="board_table">
+		<form:form modelAttribute="notice">
+			<form:hidden path="noticeNo" />
+			<table class="notice_table">
 				<tr>
-					<td><spring:message code="board.title" /></td>
+					<td><spring:message code="notice.title" /></td>
 					<td><form:input path="title" readonly="true" /></td>
 					<td><font color="red"><form:errors path="title" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true" /></td>
-					<td><font color="red"><form:errors path="writer" /></font></td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.content" /></td>
+					<td><spring:message code="notice.content" /></td>
 					<td><form:textarea path="content" readonly="true" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
 		</form:form>
 		<div>
-			<sec:authentication property="principal" var="pinfo" />
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="button" id="btnEdit">
+				<button type="submit" id="btnEdit">
 					<spring:message code="action.edit" />
 				</button>
-				<button type="button" id="btnRemove">
+				<button type="submit" id="btnRemove">
 					<spring:message code="action.remove" />
 				</button>
 			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_MEMBER')">
-				<c:if test="${pinfo.username eq board.writer}">
-					<button type="button" id="btnEdit">
-						<spring:message code="action.edit" />
-					</button>
-					<button type="button" id="btnRemove">
-						<spring:message code="action.remove" />
-					</button>
-				</c:if>
-			</sec:authorize>
-			<button type="button" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
+
 	</main>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script>
 		$(document).ready(function() {
-			var formObj = $("#board");
+			var formObj = $("#notice");
+			console.log(formObj);
 			$("#btnEdit").on("click", function() {
-				var boardNo = $("#boardNo");
-				var boardNoVal = boardNo.val();
-				self.location = "/board/modify?boardNo=" + boardNoVal;
+				var noticeNo = $("#noticeNo");
+				var noticeNoVal = noticeNo.val();
+				self.location = "modify?noticeNo=" + noticeNoVal;
 			});
 			$("#btnRemove").on("click", function() {
-				formObj.attr("action", "/board/remove");
+				formObj.attr("action", "remove");
 				formObj.submit();
 			});
 			$("#btnList").on("click", function() {
-				self.location = "/board/list";
+				self.location = "list";
 			});
 		});
 	</script>
