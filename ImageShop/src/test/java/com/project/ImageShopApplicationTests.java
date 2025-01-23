@@ -8,6 +8,9 @@ class ImageShopApplicationTests {
 
 	@Test
 	void contextLoads() {
+//		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
+//				.queryParam("size", this.sizePerPage).build();
+//		System.out.println(uriComponents.toUriString());
 	}
 
 }
